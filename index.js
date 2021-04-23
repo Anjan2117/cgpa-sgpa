@@ -4,14 +4,14 @@ let arrHead = new Array(); // array for header.
 arrHead = ["Semester", "Number of Credits", "SGPA", ""];
 
 function createTable() {
-  let empTable = document.createElement("table");
-  empTable.setAttribute("id", "empTable"); // table id.
-  empTable.setAttribute(
+  let cgTable = document.createElement("table");
+  cgTable.setAttribute("id", "cgTable"); // table id.
+  cgTable.setAttribute(
     "class",
     "table table-striped mt-4 table-bordered table-sm",
   ); // table class.
 
-  let tr = empTable.insertRow(-1);
+  let tr = cgTable.insertRow(-1);
   for (let h = 0; h < arrHead.length; h++) {
     let th = document.createElement("th"); // create table headers
     th.innerHTML = arrHead[h];
@@ -19,12 +19,12 @@ function createTable() {
   }
 
   let div = document.getElementById("cont");
-  div.appendChild(empTable); // add the TABLE to the container.
+  div.appendChild(cgTable); // add the TABLE to the container.
 }
 
 // now, add a new to the TABLE.
 function addRow() {
-  let empTab = document.getElementById("empTable");
+  let empTab = document.getElementById("cgTable");
 
   let rowCnt = empTab.rows.length; // table row count.
   let tr = empTab.insertRow(rowCnt); // the table row.
@@ -77,7 +77,7 @@ function addRow() {
 
 // delete TABLE row function.
 function removeRow(oButton) {
-  let empTab = document.getElementById("empTable");
+  let empTab = document.getElementById("cgTable");
   empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
   j--;
 }
@@ -86,10 +86,11 @@ function getCgpa() {
   let run1 = true;
   let run2 = true;
   let run;
-  let msg = "";
+  let msg1 = 0;
+  let msg2 = 0;
   document.getElementById("cgpa-error").style.display = "none";
   document.getElementById("cgpa-results").style.display = "none";
-  let empTab = document.getElementById("empTable");
+  let empTab = document.getElementById("cgTable");
   const rowCnt = empTab.rows.length; // table row count.
   let totCred = 0;
   let tot = 0;
@@ -100,28 +101,34 @@ function getCgpa() {
     // CGPA Validations
     if (cred < 0 || cred === "") {
       run1 = false;
-      msg += "Credits must be a Positive Interger <br>";
-      document.getElementById("cg-noc" + String(k)).value = "";
-    } else if (!Number.isInteger(Number(cred))) {
-      run1 = false;
-      msg += "Credits must be a Positive Integer <br>";
+      msg1++;
       document.getElementById("cg-noc" + String(k)).value = "";
     }
 
     // SGPA Validations
-    if (sgpa < 0 || sgpa > 10) {
+    if (sgpa < 0 || sgpa > 10 || sgpa === "") {
       run2 = false;
-      msg += "SGPA must be in 0 and 10";
+      msg2++;
       document.getElementById("cg-sg" + String(k)).value = "";
-    } else if (sgpa === "") {
-      run2 = false;
-      msg += "SGPA cant be empty";
     }
     run = run1 && run2;
     // console.log(msg);
     if (!run) {
       document.getElementById("cgpa-error").style.display = "block";
-      document.getElementById("cg-error-message").innerHTML = msg;
+      if (msg1 > 0) {
+        document.getElementById("cg-error-message-1").innerHTML = msg1;
+        document.getElementById(
+          "cg-error-message-1",
+        ).parentElement.style.display = "contents";
+      }
+      if (msg1 === 0) {
+        document.getElementById(
+          "cg-error-message-1",
+        ).parentElement.style.display = "none";
+      }
+      if (msg2 > 0) {
+        document.getElementById("cg-error-message-2").innerHTML = msg2;
+      }
     }
 
     // Calculating CGPA Here

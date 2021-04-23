@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
     <link rel="stylesheet" href="index.css">
 
 </head>
@@ -28,8 +27,15 @@
 
     <div class="container mt-4 p-2 pb-1 bg-danger rounded-pill" id="cgpa-error" 
     style="display: none;width:95%;color: white;font-weight: bold;max-width: 400px;">
-        <center><i class="fas fa-exclamation-triangle"></i>
-        <p id="cg-error-message"></p></center>
+    <center>
+        <i class="fas fa-exclamation-triangle"></i><br>
+        <p>Credits must be a Positive Interger 
+            <span class="badge badge-light" id="cg-error-message-1"></span>
+        </p> 
+        <p>SGPA must be a number in 0 and 10
+            <span class="badge badge-light" id="cg-error-message-2"></span>
+        </p> 
+    </center>
     </div>
     <div class="container mt-4 p-3" id="cgpa-results" style="display: none">
         <h4>Total Credits :</h4>
@@ -41,6 +47,7 @@
         </div>
 
     </div>
+    <script src="https://kit.fontawesome.com/6def1aac31.js" crossorigin="anonymous"></script>
 <script src="index.js"></script>    
 </body>
 </html>
