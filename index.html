@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body onload="createTable()">
+   
+    <div class="container mt-4">
+        <!-- <input type="text" class="btn btn-warning" id="no-rows"> -->
+        <input type="button" class="btn btn-primary" id="addRow" value="Generate Semester" onclick="addRow()" />
+    </div>
+    
+    <div id="cont" class="container"></div>  <!-- the container to add the TABLE -->
+
+        
+    <div class="container">
+        <input type="button" class="btn btn-info btn-block mt-4" onclick="getCgpa()" value="Get CGPA" >
+        <!-- <input type="button" class="btn btn-info btn-block mt-4" id="heyBtn" value="Get CGPA" > -->
+    </div>
+
+    <div class="container mt-4 p-2 pb-1 bg-danger rounded-pill" id="cgpa-error" 
+    style="display: none;width:95%;color: white;font-weight: bold;max-width: 400px;">
+        <center><i class="fas fa-exclamation-triangle"></i>
+        <p id="cg-error-message"></p></center>
+    </div>
+    <div class="container mt-4 p-3" id="cgpa-results" style="display: none">
+        <h4>Total Credits :</h4>
+        <p id="cg-totcreds"></p>
+        <h4>CGPA :</h4>
+        <p id="cg-totcgpa"></p>
+        <div class="progress" style="height: 30px;">
+            <div class="progress-bar" id="cg-progress-bar" style="font-weight: bold;"></div>
+        </div>
+
+    </div>
+<script src="index.js"></script>    
+</body>
+</html>
