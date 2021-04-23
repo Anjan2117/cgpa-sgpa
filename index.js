@@ -99,7 +99,7 @@ function getCgpa() {
     let sgpa = document.getElementById("cg-sg" + String(k)).value;
 
     // CGPA Validations
-    if (cred < 0 || cred === "") {
+    if (cred < 0 || cred === "" || !Number.isInteger(Number(cred))) {
       run1 = false;
       msg1++;
       document.getElementById("cg-noc" + String(k)).value = "";
