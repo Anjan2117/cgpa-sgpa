@@ -128,6 +128,14 @@ function getCgpa() {
       }
       if (msg2 > 0) {
         document.getElementById("cg-error-message-2").innerHTML = msg2;
+        document.getElementById(
+          "cg-error-message-2",
+        ).parentElement.style.display = "contents";
+      }
+      if (msg2 === 0) {
+        document.getElementById(
+          "cg-error-message-2",
+        ).parentElement.style.display = "none";
       }
     }
 
