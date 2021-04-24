@@ -8,7 +8,7 @@ function createTable() {
   cgTable.setAttribute("id", "cgTable"); // table id.
   cgTable.setAttribute(
     "class",
-    "table table-striped mt-4 table-bordered table-sm",
+    "table table-striped  mt-4 table-bordered table-sm",
   ); // table class.
 
   let tr = cgTable.insertRow(-1);
@@ -25,10 +25,10 @@ function createTable() {
 // now, add a new to the TABLE.
 function addRow() {
   let empTab = document.getElementById("cgTable");
-
-  let rowCnt = empTab.rows.length; // table row count.
-  let tr = empTab.insertRow(rowCnt); // the table row.
-  tr = empTab.insertRow(rowCnt);
+  console.log(empTab.rows.length);
+  // let rowCnt = empTab.rows.length; // table row count.
+  // let tr = empTab.insertRow(rowCnt); // the table row.
+  tr = empTab.insertRow(-1);
 
   for (let c = 0; c < arrHead.length; c++) {
     let td = document.createElement("td"); // table definition.
@@ -43,7 +43,7 @@ function addRow() {
       button.setAttribute("type", "button");
       button.setAttribute("class", "btn btn-danger");
       button.setAttribute("value", "X");
-
+      button.setAttribute("id", "cg-del" + String(j));
       // add button's 'onclick' event.
       button.setAttribute("onclick", "removeRow(this)");
 
@@ -78,7 +78,9 @@ function addRow() {
 // delete TABLE row function.
 function removeRow(oButton) {
   let empTab = document.getElementById("cgTable");
-  empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
+  // console.log(oButton.parentNode.parentNode.rowIndex);
+  // empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
+  empTab.deleteRow(-1);
   j--;
 }
 
