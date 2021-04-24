@@ -14,13 +14,13 @@ https://anjan2117.github.io/cgpa-sgpa/
 How to use :
 1) Go to the website https://anjan2117.github.io/cgpa-sgpa/
 
-2) Click <Generate Semester> to create a semester starting from semester-1
+2) Click [Generate Semester] to create a semester starting from semester-1
 
 3) Enter the "Number of Credits" and "SGPA" of the semester mentioned in the first column
 
 4) Try to avoid errors. If entered by mistake the input will be cleared for you to enter it again.
 
-5) Tap <Get CGPA> to see your result
+5) Tap [Get CGPA] to see your result
 
 It is as simple as that.
 
