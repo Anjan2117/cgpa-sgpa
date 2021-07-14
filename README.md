@@ -9,10 +9,10 @@ Don't make your pen and paper do the work when a simple Website can!!
 Just roll up your sleeves and be ready with the numbers( credits and SGPA's ) to get the CGPA calculated in less than a minute.
 
 Head over to :
-https://anjan2117.github.io/cgpa-sgpa/
+https://anjantalatam.github.io/cgpa-sgpa/
 
 How to use :
-1) Go to the website https://anjan2117.github.io/cgpa-sgpa/
+1) Go to the website https://anjantalatam.github.io/cgpa-sgpa/
 
 2) Click [Generate Semester] to create a semester starting from semester-1
 
