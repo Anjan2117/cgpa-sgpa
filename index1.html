@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body class="mb-4" onload="createTable()">
+    
+
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#" onclick="displayGuide()"><strong>CGPA-SGPA <i class="fas fa-calculator"></i> </strong></a>
+        <button class="navbar-toggler" style="outline: none;"  data-toggle="collapse" data-target="#navbar1">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="navbar-nav nav nav-fill w-100">
+                <li class="nav-item" >
+                    <a class="nav-link active" id="nav-link-1" onclick="displayGuide()">
+                        Usage Guide <i class="fas fa-map-pin" ></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  id="nav-link-2" onclick="displayCgpa()">
+                        Calculate CGPA
+                    </a>
+                    <i class="fas fa-map-pin" 
+                        style="display: none;"></i>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-link-3" onclick="displaySgpa()">
+                        Estimate SGPA
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-4" id="userguide-block">
+<h3>
+    How to Calculate CGPA
+</h3>
+
+<fieldset>
+    <legend>
+        How to Calculate CGPA
+    </legend>
+    <p>
+        Lorem ipsum dolor, sit amet consectetur 
+        adipisicing elit. Omnis, perferendis eligendi 
+        voluptates modi alias qui officia suscipit vero. 
+        Aliquid animi minima, temporibus doloremque deserunt 
+        eveniet optio delectus! Ea, voluptatum repellendus!
+    </p>
+</fieldset>
+
+</div>
+
+
+
+
+<div id="cgpa-block">  
+    <div class="container mt-4" >
+        <input type="button" class="btn btn-primary" id="addRow" value="Generate Semester" onclick="addRow()" />
+    </div>
+    
+    <div id="cont" class="container"></div>  <!-- the container to add the TABLE -->
+    <div class="container mt-1 p-4 rounded-pill" id="sgpa-block" >
+        <div class="row">
+        <div class="container mt-2 col-sm-12 col-lg-6">
+            <label class="mr-2 h6" for="noc-inp" >Number of Credits in upcoming semester</label>
+            <input type="number" class="btn btn-success" name="noc-inp"  min="0" id="sg-noc">
+        </div>
+        <div class="container mt-2 col-sm-12 col-lg-6">
+            <label class="mr-2 h6" for="target-cgpa" >Enter the target CGPA</label>&nbsp;
+            <input type="number" class="btn btn-success" name="target-cgpa" min="0" id="sg-cg">
+        </div>
+        </div>
+    </div>
+        
+    <div class="container">
+        <input type="button" class="btn btn-info btn-block mt-4" onclick="getCgpa(this)" 
+        id="get-cgpa-sgpa" value="Get CGPA" >
+    </div>
+
+    <div class="container mt-4 p-2 pb-1 bg-danger rounded-pill" id="cgpa-error" 
+    style="display: none;width:95%;color: white;font-weight: bold;max-width: 400px;">
+    <center>
+        <i class="fas fa-exclamation-triangle blink"></i><br>
+        <p>Credits must be a Positive Interger 
+            <span  id="cg-error-message-1" style="display: none;"></span>
+            <br>
+        </p>
+         
+        <p>SGPA/CGPA must be a number from 0 to 10
+            <span  id="cg-error-message-2" style="display: none;"></span>
+        </p> 
+    </center>
+    </div>
+    <div class="container mt-4 p-3" id="cgpa-results" style="display: none">
+        <h4>Total Credits :</h4>
+        <p id="cg-totcreds"></p>
+        <h4 id="result-cg-sg">CGPA :</h4>
+        <p id="cg-totcgpa"></p>
+        <div class="progress" style="height: 30px;">
+            <div class="progress-bar" id="cg-progress-bar" style="font-weight: bold;"></div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+    <script src="https://kit.fontawesome.com/6def1aac31.js" crossorigin="anonymous"></script>
+    <script src="index1.js"></script>    
+    <script src="guide.js"></script>
+    <script src="cgpa.js"></script>
+    <script src="sgpa.js"></script>
+</body>
+</html>
