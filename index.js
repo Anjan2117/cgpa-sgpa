@@ -5,6 +5,8 @@ arrHead = ["Semester", "Number of Credits", "SGPA", ""];
 
 function createTable() {
   let cgTable = document.createElement("table");
+  document.getElementById("cgpa-block").style.display = "none";
+  document.getElementById("sgpa-block").style.display = "none";
   cgTable.setAttribute("id", "cgTable"); // table id.
   cgTable.setAttribute(
     "class",
@@ -25,7 +27,7 @@ function createTable() {
 // now, add a new to the TABLE.
 function addRow() {
   let empTab = document.getElementById("cgTable");
-  console.log(empTab.rows.length);
+  // console.log(empTab.rows.length);
   // let rowCnt = empTab.rows.length; // table row count.
   // let tr = empTab.insertRow(rowCnt); // the table row.
   tr = empTab.insertRow(-1);
@@ -84,7 +86,7 @@ function removeRow(oButton) {
   j--;
 }
 
-function getCgpa() {
+function getCgpa(self) {
   let run1 = true;
   let run2 = true;
   let run;
@@ -99,12 +101,23 @@ function getCgpa() {
   for (let k = 1; k < j; k++) {
     let cred = document.getElementById("cg-noc" + String(k)).value;
     let sgpa = document.getElementById("cg-sg" + String(k)).value;
+    document
+      .getElementById("cg-noc" + String(k))
+      .classList.remove("btn-danger");
 
+    document.getElementById("cg-sg" + String(k)).classList.remove("btn-danger");
+
+    document.getElementById("cg-noc" + String(k)).classList.add("btn-success");
+    document.getElementById("cg-sg" + String(k)).classList.add("btn-success");
     // CGPA Validations
     if (cred < 0 || cred === "" || !Number.isInteger(Number(cred))) {
       run1 = false;
       msg1++;
       document.getElementById("cg-noc" + String(k)).value = "";
+      document
+        .getElementById("cg-noc" + String(k))
+        .classList.remove("btn-success");
+      document.getElementById("cg-noc" + String(k)).classList.add("btn-danger");
     }
 
     // SGPA Validations
@@ -112,13 +125,17 @@ function getCgpa() {
       run2 = false;
       msg2++;
       document.getElementById("cg-sg" + String(k)).value = "";
+      document
+        .getElementById("cg-sg" + String(k))
+        .classList.remove("btn-success");
+      document.getElementById("cg-sg" + String(k)).classList.add("btn-danger");
     }
     run = run1 && run2;
     // console.log(msg);
     if (!run) {
       document.getElementById("cgpa-error").style.display = "block";
       if (msg1 > 0) {
-        document.getElementById("cg-error-message-1").innerHTML = msg1;
+        // document.getElementById("cg-error-message-1").innerHTML = msg1;
         document.getElementById(
           "cg-error-message-1",
         ).parentElement.style.display = "contents";
@@ -129,7 +146,7 @@ function getCgpa() {
         ).parentElement.style.display = "none";
       }
       if (msg2 > 0) {
-        document.getElementById("cg-error-message-2").innerHTML = msg2;
+        // document.getElementById("cg-error-message-2").innerHTML = msg2;
         document.getElementById(
           "cg-error-message-2",
         ).parentElement.style.display = "contents";
@@ -145,9 +162,72 @@ function getCgpa() {
     totCred += Number(cred);
     tot += Number(cred) * Number(sgpa);
   }
+
+  let myCGPA = tot / totCred;
+
+  // SGPA Estimation Code
+
+  document.getElementById("sg-noc").classList.add("btn-success");
+  if (self.value === "Get SGPA") {
+    let k1 = document.getElementById("sg-noc").value;
+    let k2 = document.getElementById("sg-cg").value;
+
+    document.getElementById("sg-noc").classList.remove("btn-danger");
+    document.getElementById("sg-cg").classList.remove("btn-danger");
+    document.getElementById("sg-noc").classList.add("btn-success");
+    document.getElementById("sg-cg").classList.add("btn-success");
+    // SGPA-CGPA Validations
+    if (k1 < 0 || k1 === "" || !Number.isInteger(Number(k1))) {
+      run1 = false;
+      msg1++;
+      document.getElementById("sg-noc").value = "";
+      document.getElementById("sg-noc").classList.remove("btn-success");
+      document.getElementById("sg-noc").classList.add("btn-danger");
+    }
+    // SGPA-SGPA Validations
+    if (k2 < 0 || k2 > 10 || k2 === "") {
+      run2 = false;
+      msg2++;
+      document.getElementById("sg-cg").value = "";
+      document.getElementById("sg-cg").classList.remove("btn-success");
+      document.getElementById("sg-cg").classList.add("btn-danger");
+    }
+    run = run1 && run2;
+    // console.log(msg);
+    if (!run) {
+      document.getElementById("cgpa-error").style.display = "block";
+      if (msg1 > 0) {
+        // document.getElementById("cg-error-message-1").innerHTML = msg1;
+        document.getElementById(
+          "cg-error-message-1",
+        ).parentElement.style.display = "contents";
+      }
+      if (msg1 === 0) {
+        document.getElementById(
+          "cg-error-message-1",
+        ).parentElement.style.display = "none";
+      }
+      if (msg2 > 0) {
+        // document.getElementById("cg-error-message-2").innerHTML = msg2;
+        document.getElementById(
+          "cg-error-message-2",
+        ).parentElement.style.display = "contents";
+      }
+      if (msg2 === 0) {
+        document.getElementById(
+          "cg-error-message-2",
+        ).parentElement.style.display = "none";
+      }
+    }
+    k1 = Number(k1);
+    k2 = Number(k2);
+
+    totCred += k1;
+    myCGPA = (totCred * k2 - tot) / k1;
+  }
   //   console.log(totCred);
   //   console.log(tot);
-  let myCGPA = tot / totCred;
+
   let cgpaResults = document.getElementById("cgpa-results");
 
   document.getElementById("cg-totcreds").innerHTML = totCred;
