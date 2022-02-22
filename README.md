@@ -1,6 +1,6 @@
 # cgpa-sgpa
 
-""" CGPA Calculator """
+CGPA Calculator
 ----------------------------------------------
 
 Just got the results! Want to know where your CGPA stands. 
@@ -24,10 +24,8 @@ How to use :
 
 It is as simple as that.
 
-# Upcoming Updates
 
-
-""" SGPA Predictor """
+SGPA Predictor
 ----------------------------------------------
 
 Starting a new semester with pointer goals may be for placements / for Higher Studies / for whatever the reason maybe !!
